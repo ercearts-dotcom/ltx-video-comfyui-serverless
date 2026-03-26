@@ -1,16 +1,12 @@
 # Base image: clean ComfyUI + comfy-cli + comfyui-manager
-FROM runpod/worker-comfyui:5.5.1-base
+FROM runpod/worker-comfyui:5.8.5-base
 
-# ── Custom nodes ────────────────────────────────────────────────────────────────
+# ── Custom nodes ──────────────────────────────────────────────────────────────
 RUN comfy node install --exit-on-fail comfyui-kjnodes@1.3.5 --mode remote
 RUN comfy node install --exit-on-fail comfyui-custom-scripts@1.2.5
 RUN comfy node install --exit-on-fail ComfyUI-Crystools@1.27.4
 
-# ── Download models into the image (baked-in for fast cold starts via FlashBoot)
-# Models land at /comfyui/models/... inside the image.
-# ComfyUI also scans /runpod-volume/models/... when a Network Volume is attached,
-# so placing files here is NOT required – they are already in the image layer.
-
+# ── Download models into the image ────────────────────────────────────────────
 RUN comfy model download \
     --url https://huggingface.co/Kijai/LTX2.3_comfy/resolve/main/diffusion_models/ltx-2.3-22b-dev_transformer_only_fp8_scaled.safetensors \
         --relative-path models/diffusion_models \
