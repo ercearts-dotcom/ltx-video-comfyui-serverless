@@ -1,0 +1,696 @@
+{
+  "input": {
+    "workflow": {
+      "1": {
+        "inputs": {
+          "text": "euler"
+        },
+        "class_type": "KSamplerSelect",
+        "_meta": {
+          "title": "KSamplerSelect"
+        }
+      },
+      "8": {
+        "inputs": {
+          "noise": [
+            "32",
+            0
+          ],
+          "guider": [
+            "26",
+            0
+          ],
+          "sampler": [
+            "1",
+            0
+          ],
+          "sigmas": [
+            "59",
+            0
+          ],
+          "latent_image": [
+            "15",
+            0
+          ]
+        },
+        "class_type": "SamplerCustomAdvanced",
+        "_meta": {
+          "title": "SamplerCustomAdvanced"
+        }
+      },
+      "10": {
+        "inputs": {
+          "av_latent": [
+            "8",
+            0
+          ]
+        },
+        "class_type": "LTXVSeparateAVLatent",
+        "_meta": {
+          "title": "LTXVSeparateAVLatent"
+        }
+      },
+      "15": {
+        "inputs": {
+          "video_latent": [
+            "83",
+            0
+          ],
+          "audio_latent": [
+            "86",
+            0
+          ]
+        },
+        "class_type": "LTXVConcatAVLatent",
+        "_meta": {
+          "title": "LTXVConcatAVLatent"
+        }
+      },
+      "20": {
+        "inputs": {
+          "image": [
+            "81",
+            0
+          ]
+        },
+        "class_type": "GetImageSize",
+        "_meta": {
+          "title": "GetImageSize"
+        }
+      },
+      "21": {
+        "inputs": {
+          "value": 33,
+          "image": [
+            "81",
+            0
+          ]
+        },
+        "class_type": "LTXVPreprocess",
+        "_meta": {
+          "title": "LTXVPreprocess"
+        }
+      },
+      "22": {
+        "inputs": {
+          "value": 768,
+          "width": [
+            "20",
+            0
+          ],
+          "height": [
+            "20",
+            1
+          ],
+          "length": [
+            "62",
+            0
+          ]
+        },
+        "class_type": "EmptyLTXVLatentVideo",
+        "_meta": {
+          "title": "EmptyLTXVLatentVideo"
+        }
+      },
+      "23": {
+        "inputs": {
+          "value": 0.8,
+          "vae": [
+            "75",
+            0
+          ],
+          "image": [
+            "21",
+            0
+          ],
+          "latent": [
+            "22",
+            0
+          ]
+        },
+        "class_type": "LTXVImgToVideoInplace",
+        "_meta": {
+          "title": "LTXVImgToVideoInplace"
+        }
+      },
+      "26": {
+        "inputs": {
+          "value": 1.3,
+          "model": [
+            "46",
+            0
+          ],
+          "positive": [
+            "34",
+            0
+          ],
+          "negative": [
+            "34",
+            1
+          ]
+        },
+        "class_type": "CFGGuider",
+        "_meta": {
+          "title": "CFGGuider"
+        }
+      },
+      "30": {
+        "inputs": {
+          "value": 1536
+        },
+        "class_type": "ResizeImagesByLongerEdge",
+        "_meta": {
+          "title": "ResizeImagesByLongerEdge"
+        }
+      },
+      "32": {
+        "inputs": {
+          "value": 927829336316669
+        },
+        "class_type": "RandomNoise",
+        "_meta": {
+          "title": "RandomNoise"
+        }
+      },
+      "34": {
+        "inputs": {
+          "value": 25,
+          "positive": [
+            "36",
+            0
+          ],
+          "negative": [
+            "35",
+            0
+          ],
+          "frame_rate": [
+            "78",
+            0
+          ]
+        },
+        "class_type": "LTXVConditioning",
+        "_meta": {
+          "title": "LTXVConditioning"
+        }
+      },
+      "35": {
+        "inputs": {
+          "text": "blurry, low quality, still frame, frames, watermark, overlay, titles, has blurbox, has subtitles, text, script, subtitle",
+          "clip": [
+            "43",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "36": {
+        "inputs": {
+          "text": "Talking girl, cle",
+          "clip": [
+            "43",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "38": {
+        "inputs": {
+          "value": 24,
+          "images": [
+            "58",
+            0
+          ],
+          "audio": [
+            "90",
+            0
+          ],
+          "fps": [
+            "67",
+            0
+          ]
+        },
+        "class_type": "CreateVideo",
+        "_meta": {
+          "title": "CreateVideo"
+        }
+      },
+      "42": {
+        "inputs": {
+          "filename": "ltx-2.3-22b-dev_transformer_only_fp8_scaled.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "43": {
+        "inputs": {
+          "filename": "gemma_3_12B_it_fp8_e4m3fn.safetensors"
+        },
+        "class_type": "DualCLIPLoader",
+        "_meta": {
+          "title": "DualCLIPLoader"
+        }
+      },
+      "46": {
+        "inputs": {
+          "filename": "ltx-2.3-22b-distilled-lora-384.safetensors",
+          "model": [
+            "42",
+            0
+          ]
+        },
+        "class_type": "LoraLoaderModelOnly",
+        "_meta": {
+          "title": "LoraLoaderModelOnly"
+        }
+      },
+      "47": {
+        "inputs": {
+          "filename": "LTX2.3-",
+          "video": [
+            "38",
+            0
+          ]
+        },
+        "class_type": "SaveVideo",
+        "_meta": {
+          "title": "SaveVideo"
+        }
+      },
+      "48": {
+        "inputs": {
+          "image": "d57232ab19bf507eaafa6432af6eade2a2552db90b31e6444a84899e999706df.jpg"
+        },
+        "class_type": "LoadImage",
+        "_meta": {
+          "title": "LoadImage"
+        }
+      },
+      "51": {
+        "inputs": {
+          "filename": "LTX23_audio_vae_bf16.safetensors"
+        },
+        "class_type": "VAELoaderKJ",
+        "_meta": {
+          "title": "VAELoaderKJ"
+        }
+      },
+      "52": {
+        "inputs": {
+          "filename": "LTX23_video_vae_bf16.safetensors"
+        },
+        "class_type": "VAELoaderKJ",
+        "_meta": {
+          "title": "VAELoaderKJ"
+        }
+      },
+      "53": {
+        "inputs": {
+          "text": "audio vae",
+          "VAE": [
+            "51",
+            0
+          ]
+        },
+        "class_type": "SetNode",
+        "_meta": {
+          "title": "SetNode"
+        }
+      },
+      "55": {
+        "inputs": {
+          "text": "vae",
+          "VAE": [
+            "52",
+            0
+          ]
+        },
+        "class_type": "SetNode",
+        "_meta": {
+          "title": "SetNode"
+        }
+      },
+      "56": {
+        "inputs": {
+          "text": "vae"
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "GetNode"
+        }
+      },
+      "58": {
+        "inputs": {
+          "image": [
+            "74",
+            0
+          ]
+        },
+        "class_type": "GetImageSizeAndCount",
+        "_meta": {
+          "title": "GetImageSizeAndCount"
+        }
+      },
+      "59": {
+        "inputs": {
+          "filename": "1., 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"
+        },
+        "class_type": "ManualSigmas",
+        "_meta": {
+          "title": "ManualSigmas"
+        }
+      },
+      "61": {
+        "inputs": {
+          "audio": [
+            "79",
+            0
+          ],
+          "audio_vae": [
+            "76",
+            0
+          ]
+        },
+        "class_type": "LTXVAudioVAEEncode",
+        "_meta": {
+          "title": "LTXVAudioVAEEncode"
+        }
+      },
+      "62": {
+        "inputs": {
+          "text": "(a*b)+1",
+          "a": [
+            "80",
+            0
+          ],
+          "b": [
+            "65",
+            0
+          ]
+        },
+        "class_type": "MathExpression|pysssss",
+        "_meta": {
+          "title": "MathExpression|pysssss"
+        }
+      },
+      "65": {
+        "inputs": {
+          "value": 25.000000000000007
+        },
+        "class_type": "FloatConstant",
+        "_meta": {
+          "title": "FloatConstant"
+        }
+      },
+      "66": {
+        "inputs": {
+          "text": "fps",
+          "FLOAT": [
+            "65",
+            0
+          ]
+        },
+        "class_type": "SetNode",
+        "_meta": {
+          "title": "SetNode"
+        }
+      },
+      "67": {
+        "inputs": {
+          "text": "fps"
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "GetNode"
+        }
+      },
+      "69": {
+        "inputs": {
+          "value": 0
+        },
+        "class_type": "SolidMask",
+        "_meta": {
+          "title": "SolidMask"
+        }
+      },
+      "70": {
+        "inputs": {
+          "samples": [
+            "61",
+            0
+          ],
+          "mask": [
+            "69",
+            0
+          ]
+        },
+        "class_type": "SetLatentNoiseMask",
+        "_meta": {
+          "title": "SetLatentNoiseMask"
+        }
+      },
+      "72": {
+        "inputs": {
+          "text": "audio"
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "GetNode"
+        }
+      },
+      "74": {
+        "inputs": {
+          "value": 768,
+          "samples": [
+            "10",
+            0
+          ],
+          "vae": [
+            "56",
+            0
+          ]
+        },
+        "class_type": "VAEDecodeTiled",
+        "_meta": {
+          "title": "VAEDecodeTiled"
+        }
+      },
+      "75": {
+        "inputs": {
+          "text": "vae"
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "GetNode"
+        }
+      },
+      "76": {
+        "inputs": {
+          "text": "audio vae"
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "GetNode"
+        }
+      },
+      "78": {
+        "inputs": {
+          "text": "fps"
+        },
+        "class_type": "GetNode",
+        "_meta": {
+          "title": "GetNode"
+        }
+      },
+      "79": {
+        "inputs": {
+          "filename": "90d8b030d27c37aefdcda767f92265634b98f610484cc625b387ebaae95162f6.mp3"
+        },
+        "class_type": "LoadAudio",
+        "_meta": {
+          "title": "LoadAudio"
+        }
+      },
+      "80": {
+        "inputs": {
+          "value": 9.000000000000002
+        },
+        "class_type": "FloatConstant",
+        "_meta": {
+          "title": "FloatConstant"
+        }
+      },
+      "81": {
+        "inputs": {
+          "upscale_method": "lanczos",
+          "width": 736,
+          "height": 1280,
+          "crop": "center",
+          "image": [
+            "48",
+            0
+          ]
+        },
+        "class_type": "ImageScale",
+        "_meta": {
+          "title": "ImageScale"
+        }
+      },
+      "82": {
+        "inputs": {
+          "value": true
+        },
+        "class_type": "PrimitiveBoolean",
+        "_meta": {
+          "title": "Use Reference Image (I2V)"
+        }
+      },
+      "83": {
+        "inputs": {
+          "value": false,
+          "on_true": [
+            "23",
+            0
+          ],
+          "on_false": [
+            "22",
+            0
+          ],
+          "boolean": [
+            "82",
+            0
+          ]
+        },
+        "class_type": "Switch any [Crystools]",
+        "_meta": {
+          "title": "Switch any [Crystools]"
+        }
+      },
+      "84": {
+        "inputs": {
+          "value": true
+        },
+        "class_type": "PrimitiveBoolean",
+        "_meta": {
+          "title": "Use Uploaded Audio Conditioning"
+        }
+      },
+      "85": {
+        "inputs": {
+          "value": 121,
+          "audio_vae": [
+            "76",
+            0
+          ],
+          "frames_number": [
+            "62",
+            0
+          ]
+        },
+        "class_type": "LTXVEmptyLatentAudio",
+        "_meta": {
+          "title": "Generated Audio Latent"
+        }
+      },
+      "86": {
+        "inputs": {
+          "value": false,
+          "on_true": [
+            "70",
+            0
+          ],
+          "on_false": [
+            "85",
+            0
+          ],
+          "boolean": [
+            "84",
+            0
+          ]
+        },
+        "class_type": "Switch any [Crystools]",
+        "_meta": {
+          "title": "Switch any [Crystools]"
+        }
+      },
+      "87": {
+        "inputs": {
+          "samples": [
+            "89",
+            0
+          ],
+          "audio_vae": [
+            "76",
+            0
+          ]
+        },
+        "class_type": "LTXVAudioVAEDecode",
+        "_meta": {
+          "title": "Decode Final Audio"
+        }
+      },
+      "88": {
+        "inputs": {
+          "value": 1,
+          "audio_vae": [
+            "76",
+            0
+          ]
+        },
+        "class_type": "LTXVEmptyLatentAudio",
+        "_meta": {
+          "title": "Cheap Dummy Decode Audio Latent"
+        }
+      },
+      "89": {
+        "inputs": {
+          "value": false,
+          "on_true": [
+            "88",
+            0
+          ],
+          "on_false": [
+            "10",
+            1
+          ],
+          "boolean": [
+            "84",
+            0
+          ]
+        },
+        "class_type": "Switch any [Crystools]",
+        "_meta": {
+          "title": "Switch any [Crystools]"
+        }
+      },
+      "90": {
+        "inputs": {
+          "value": false,
+          "on_true": [
+            "79",
+            0
+          ],
+          "on_false": [
+            "87",
+            0
+          ],
+          "boolean": [
+            "84",
+            0
+          ]
+        },
+        "class_type": "Switch any [Crystools]",
+        "_meta": {
+          "title": "Switch any [Crystools]"
+        }
+      }
+    }
+  }
+}
